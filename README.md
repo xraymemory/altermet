@@ -1,4 +1,4 @@
-AlterMet is an installation based on the Occupy.Here code,
+AlterMet is an installation based on Occupy.Here,
 written by the inestimable Daniel Phiffer (http://occupyhere.org/).
 
 You need to set up Occupy.Here before the AlterMet will be functional.
