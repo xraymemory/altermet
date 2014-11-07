@@ -1,0 +1,80 @@
+<html>
+
+    <head>
+        <style>
+
+            body {
+                background: #111;
+                color:#eee;
+            }
+
+            #main {
+                width:650px;
+                margin:auto;
+            }
+
+        </style>
+    </head>
+    
+    <body>
+        <div id="main">
+            <canvas id="c" height="931" width="474" /> 
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+        <script type="text/javascript" src="http://oldstatic.travisberry.com/demos/canvas-text-demo/text.js"></script>
+        <script type="text/javascript">
+            var canvas = document.getElementById('c');
+            var context = canvas.getContext('2d');
+            var imageObj = new Image();
+
+            imageObj.onload = function() {
+                context.drawImage(imageObj, 0, 0);
+            };
+            imageObj.src = './test.jpg';
+            $('#c').mousedown(function(e){
+                if ($('#textAreaPopUp').length == 0) {
+                    var mouseX = e.pageX - this.offsetLeft + $("#c").position().left;
+                    var mouseY = e.pageY - this.offsetTop;
+ 
+                    //append a text area box to the canvas where the user clicked to enter in a comment
+                    var textArea = "<div id='textAreaPopUp' style='position:absolute;top:"+mouseY+"px;left:"+mouseX+"px;z-index:30;'><textarea id='textareaTest' style='width:100px;height:50px;background:transparent'></textarea>";
+                    var saveButton = "<input type='button' value='save' id='saveText' onclick='saveTextFromArea("+mouseY+","+mouseX+");'></div>";
+                    var appendString = textArea + saveButton;
+                    $("#main").append(appendString);
+                } else {
+                    $('textarea#textareaTest').remove();
+                    $('#saveText').remove();
+                    $('#textAreaPopUp').remove();
+                    var mouseX = e.pageX - this.offsetLeft + $("#c").position().left;
+                    var mouseY = e.pageY - this.offsetTop;
+                    //append a text area box to the canvas where the user clicked to enter in a comment
+                    var textArea = "<div id='textAreaPopUp' style='position:absolute;top:"+mouseY+"px;left:"+mouseX+"px;z-index:30;'><textarea id='textareaTest' style='width:100px;height:50px;background:transparent'></textarea>";
+                    var saveButton = "<input type='button' value='save' id='saveText' onclick='saveTextFromArea("+mouseY+","+mouseX+");'></div>";
+                    var appendString = textArea + saveButton;
+                    $("#main").append(appendString);
+                }
+            });
+           
+            function saveTextFromArea(y,x){
+                //get the value of the textarea then destroy it and the save button
+                var text = $('textarea#textareaTest').val();
+                $('textarea#textareaTest').remove();
+                $('#saveText').remove();
+                $('#textAreaPopUp').remove();
+                
+                //get the canvas and add the text functions
+                var canvas = document.getElementById('c');
+                var context = canvas.getContext('2d');
+                var font = "sans";
+                var fontSize = 16;
+                CanvasTextFunctions.enable(context);
+                var topY = y - $("#c").position().top;
+                var leftX = x - $("#c").position().left;
+                context.drawText(font, fontSize, leftX, topY, text);
+                context.save();
+                context.restore();
+            }
+           
+        </script>
+    </body>
+</html>
