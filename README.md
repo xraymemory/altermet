@@ -10,4 +10,4 @@ The AlterMet software is a variant of the OccupyHere software written by the ine
 
 The `public/` directory contains the FeMet content which is served by the broadcasting router.
 
-- Michael & Joselyn
+💕 Michael & Joselyn
