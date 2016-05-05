@@ -8,6 +8,6 @@ Seventy-six percent of painted women in the Met are nude. Less than four percent
 
 The AlterMet software is a variant of the OccupyHere software written by the inestimable Daniel Phiffer (http://occupyhere.org/).
 
-The `public/` directory contains the AlterMet content which is served by the broadcasting router.
+The `public/` directory contains the FeMet content which is served by the broadcasting router.
 
 - Michael & Joselyn
